@@ -28,8 +28,8 @@ export default class Gameboard {
     return true;
   }
 
-  placeShip(x, y, length, isHorizontal = true) {
-    if (!this.isPositionFree(x, y, length, isHorizontal)) {
+  placeShip(x, y, length, isVertical = true) {
+    if (!this.isPositionFree(x, y, length, isVertical)) {
       throw new Error("Invalid position to place the ship");
     }
 
@@ -37,8 +37,8 @@ export default class Gameboard {
     this.ships.push(ship);
 
     for (let i = 0; i < length; i++) {
-      const posX = isHorizontal ? x + i : x;
-      const posY = isHorizontal ? y : y + i;
+      const posX = isVertical ? x + i : x;
+      const posY = isVertical ? y : y + i;
       this.shipPositions.set(`${posX},${posY}`, ship);
     }
   }
