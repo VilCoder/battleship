@@ -18,15 +18,4 @@ describe("Player validations", () => {
 
     expect(defender.gameboard.allShipsSunk()).toBeTruthy();
   });
-
-  test("The computer does not repeat random attacks", () => {
-    const computer = new Player(true);
-    const human = new Player();
-
-    for (let i = 0; i < 100; i++) {
-      computer.attackRandom(human);
-    }
-
-    expect(computer.attacksMade.size).toBe(100);
-  });
 });

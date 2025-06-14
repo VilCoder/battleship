@@ -2,8 +2,12 @@ import "../css/reset.css";
 import "../css/styles.css";
 import "../css/responsive.css";
 
-import { renderBoardLabel, renderBoards } from "../js/render.js";
+import gameController from "./gameController";
 
-renderBoardLabel();
-renderBoards();
+document.addEventListener("DOMContentLoaded", () => {
+  gameController.init();
 
+  document.querySelector(".reset").addEventListener("click", () => {
+    gameController.init();
+  });
+});

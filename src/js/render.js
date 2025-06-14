@@ -1,8 +1,8 @@
-import Gameboard from "./gameboard";
-
 function renderBoardLabel() {
   const topLabel = document.querySelectorAll(".board__label-top");
   topLabel.forEach((label) => {
+    label.textContent = "" ;
+
     for (let i = 0; i < 10; i++) {
       const top = document.createElement("div");
       top.textContent = i;
@@ -12,6 +12,8 @@ function renderBoardLabel() {
 
   const leftLabel = document.querySelectorAll(".board__label-left");
   leftLabel.forEach((label) => {
+    label.textContent = "";
+
     for (let i = 0; i < 10; i++) {
       const left = document.createElement("div");
       left.textContent = i;
@@ -23,6 +25,8 @@ function renderBoardLabel() {
 function renderBoards() {
   const boards = document.querySelectorAll(".board");
   boards.forEach((board) => {
+    board.textContent = "";
+    
     let countRow = 0;
     let countColumn = 0;
 
@@ -38,29 +42,7 @@ function renderBoards() {
       board.appendChild(cell);
       countColumn += 1;
     }
-
-    renderPlaceShip(board, new Gameboard(), 1, 0, 4, false);
-    renderPlaceShip(board, new Gameboard(), 3, 4, 2, true);
-    renderPlaceShip(board, new Gameboard(), 0, 9, 1);
   });
 }
 
-function renderPlaceShip(...args) {
-  const [boardElement, gameboard, x, y, length, isVertical] = args;
-
-  gameboard.placeShip(x, y, length, isVertical);
-
-  for (let i = 0; i < length; i++) {
-    const posX = isVertical ? x + i : x;
-    const posY = isVertical ? y : y + i;
-    const cell = boardElement.querySelector(
-      `.board__cell[data-index="${posX},${posY}"]`,
-    );
-
-    if (cell) {
-      cell.classList.add(`board__ship`);
-    }
-  }
-}
-
-export { renderBoardLabel, renderBoards, renderPlaceShip };
+export { renderBoardLabel, renderBoards };

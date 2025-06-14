@@ -20,12 +20,27 @@ export default class Gameboard {
 
       if (
         !this.isWithinBounds(posX, posY) ||
-        this.shipPositions.has(key)
+        this.shipPositions.has(key) ||
+        this.isAdjacentToAnotherShip(posX, posY)
       ) {
         return false;
       }
     }
+
     return true;
+  }
+
+  isAdjacentToAnotherShip(x, y) {
+    const adjacentOffsets = [
+      [1, 0], // Right
+      [-1, 0], // Left
+      [0, 1], // Bottom
+      [0, -1], // Top
+    ];
+
+    return adjacentOffsets.some(([dx, dy]) => {
+      return this.shipPositions.has(`${x + dx},${y + dy}`);
+    })
   }
 
   placeShip(x, y, length, isVertical = true) {

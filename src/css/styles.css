@@ -7,6 +7,8 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
@@ -15,27 +17,39 @@ body {
   box-sizing: border-box;
 }
 
+svg {
+  width: 2rem;
+  height: 2rem;
+}
+
 /* ======================= HEAD ======================= */
 .container__head {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 4rem;
-  padding-left: 4rem;
+  padding: 1rem;
+}
+
+.head__title {
+  position: absolute;
+  left: 10%;
 }
 
 .head__text {
-  width: 40%;
+  width: 30%;
+  font-size: 2rem;
   padding: 0.3rem;
   background-color: #f8f8f8;
   text-align: center;
+  margin: auto;
 }
 
 /* ======================= Main ======================= */
 .container__main {
+  flex-grow: 1;
   display: flex;
-  flex-wrap: nowrap;
   width: 100%;
-  min-height: 90vh;
+  /* min-height: 90vh; */
 }
 
 .main__board {
@@ -49,7 +63,6 @@ body {
   width: 40rem;
   height: 40rem;
   margin: auto;
-  border: 1px solid #000;
 }
 
 .board__label-top {
@@ -89,11 +102,23 @@ body {
   border: 2px solid #000;
 }
 
-.board__randomize {
+.board__player {
   position: absolute;
-  bottom: -10%;
+  bottom: -7%;
   left: 50%;
   transform: translateX(-50%);
+  width: fit-content;
+  font-size: 1.2rem;
+}
+
+.container__footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.reset {
+  position: relative;
   width: fit-content;
   padding: 0 0.6rem;
   border: none;
@@ -102,11 +127,11 @@ body {
   z-index: 1;
 }
 
-.board__randomize:hover {
+.reset:hover {
   color: #fff;
 }
 
-.board__randomize::after {
+.reset::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -119,6 +144,19 @@ body {
   z-index: -1;
 }
 
-.board__randomize:hover::after {
+.reset:hover::after {
   height: 100%;
-} 
+}
+
+.attacked.miss {
+  background-color: #f00;
+}
+
+.attacked.hit {
+  background-color: green;
+}
+
+.reset__icon {
+  position: relative;
+  top: 0.2rem;  
+}
