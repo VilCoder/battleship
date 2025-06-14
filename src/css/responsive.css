@@ -1,0 +1,23 @@
+/* ======================= DESKTOP ======================= */
+@media (min-width: 1114px) {
+  /* ======================= HEAD ======================= */
+  .container__head {
+    flex-direction: row;
+  }
+
+  .head__title {
+    position: absolute;
+    left: 10%;
+    margin-bottom: 0;
+  }
+
+  .head__text {
+    width: 30%;
+  }
+
+  /* ======================= Main ======================= */
+  .container__main {
+    flex-direction: row;
+    gap: 0;
+  }
+}
