@@ -1,4 +1,4 @@
-import Gameboard from "./gameboard";
+import Gameboard from "../src/js/game/gameboard";
 
 /* eslint-disable */
 describe("Ship placement validations", () => {

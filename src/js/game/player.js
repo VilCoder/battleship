@@ -9,6 +9,6 @@ export default class Player {
   // Perform an attack on the enemy board
   attack(opponent, x, y) {
     opponent.gameboard.receiveAttack(x, y);
-    this.attacksMade.add(`${x},${y}`)
+    this.attacksMade.add(`${x},${y}`);
   }
 }

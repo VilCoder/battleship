@@ -40,7 +40,7 @@ export default class Gameboard {
 
     return adjacentOffsets.some(([dx, dy]) => {
       return this.shipPositions.has(`${x + dx},${y + dy}`);
-    })
+    });
   }
 
   placeShip(x, y, length, isVertical = true) {

@@ -1,6 +1,6 @@
 // gameController.js
-import Player from "./player";
-import { renderBoardLabel, renderBoards } from "./render";
+import Player from "../game/player";
+import { renderBoardLabel, renderBoards } from "../ui/render";
 
 const gameController = (() => {
   const infoGame = document.querySelector(".head__text");
@@ -15,7 +15,6 @@ const gameController = (() => {
       player = new Player();
       computer = new Player();
 
-      // Colocar barcos manualmente (harás esto luego con inputs o random)
       player.gameboard.placeShip(
         Math.floor(Math.random() * 10),
         Math.floor(Math.random() * 10),
@@ -26,6 +25,24 @@ const gameController = (() => {
         Math.floor(Math.random() * 10),
         Math.floor(Math.random() * 10),
         3,
+        false,
+      );
+      player.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        2,
+        false,
+      );
+      player.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        1,
+        false,
+      );
+      player.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        1,
         false,
       );
 
@@ -39,24 +56,35 @@ const gameController = (() => {
         Math.floor(Math.random() * 10),
         Math.floor(Math.random() * 10),
         3,
+        false,
+      );
+      computer.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        2,
+        false,
+      );
+      computer.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        1,
+        false,
+      );
+      computer.gameboard.placeShip(
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+        1,
         false,
       );
 
       renderBoardLabel();
       renderBoards();
 
-      // Pintar barcos del jugador
       placeShipsOnBoard(
         document.querySelectorAll(".board")[0],
         player.gameboard,
       );
 
-      placeShipsOnBoard(
-        document.querySelectorAll(".board")[1],
-        computer.gameboard,
-      );
-
-      // Agregar listener al tablero del enemigo (computadora)
       // eslint-disable-next-line prefer-destructuring
       const computerBoard = document.querySelectorAll(".board")[1];
       computerBoard.addEventListener("click", handlePlayerClick);
@@ -75,7 +103,6 @@ const gameController = (() => {
 
       if (cell) {
         cell.classList.add("board__ship");
-        cell.draggable = true;
       }
     });
   }
@@ -84,12 +111,12 @@ const gameController = (() => {
     if (currentTurn !== "player") return;
 
     if (computer.gameboard.allShipsSunk()) {
-      endGame("¡Has ganado!");
+      endGame("You win!");
       return;
     }
 
     if (player.gameboard.allShipsSunk()) {
-      endGame("¡Has perdido contra la computadora!");
+      endGame("Computer win!");
       return;
     }
 
@@ -101,7 +128,6 @@ const gameController = (() => {
 
     if (player.attacksMade.has(`${x},${y}`)) return;
 
-    // Atacar a la computadora
     player.attack(computer, x, y);
     cell.classList.add("attacked");
 
@@ -109,7 +135,7 @@ const gameController = (() => {
       cell.classList.add("hit");
 
       if (computer.gameboard.allShipsSunk()) {
-        endGame("¡Has ganado!");
+        endGame("You win!");
       }
 
       return;
@@ -124,7 +150,7 @@ const gameController = (() => {
 
   function computerTurn() {
     if (player.gameboard.allShipsSunk()) {
-      endGame("¡Has perdido contra la computadora!");
+      endGame("Compute win!");
       return;
     }
 
@@ -161,7 +187,6 @@ const gameController = (() => {
 
   function endGame(message) {
     alert(message);
-    // Podrías deshabilitar más clics si quieres
   }
 
   return { init, placeShipsOnBoard };

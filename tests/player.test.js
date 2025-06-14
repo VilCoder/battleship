@@ -1,4 +1,4 @@
-import Player from "./player";
+import Player from "../src/js/game/player";
 
 /* eslint-disable */
 describe("Player validations", () => {
